@@ -43,6 +43,7 @@ open http://127.0.0.1/api/domain/0.0
 ##### Monorepo Related
 
 - `npm run bootstrap`: installs root packages in all sub-packages
+- `npm run canary`: attempt a canary publish of the monorepo
 - `npm run manage`: launches the wizard to manage the monorepo
 - `npm run watch`: watches the monorepo for changes to initiate a re-deploy
 
