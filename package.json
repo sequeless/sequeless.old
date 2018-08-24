@@ -1,7 +1,8 @@
 {
   "name": "@sequeless/sequeless",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TBD",
+  "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "lerna": "lerna-wizard"

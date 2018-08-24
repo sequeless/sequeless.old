@@ -1,8 +1,6 @@
-# Sequeless
+# Sequeless (@sequeless/sequeless)
 
 **EXPERIMENTAL**: Not yet ready to be released
-
-A scalable and extensible platform for multi-tenant web based enterprise applications
 
 ## REQUIREMENTS
 
