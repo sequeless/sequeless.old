@@ -1,7 +1,6 @@
 {
   "packages": [
-    "libs/*",
-    "services/*"
+    "libs/*"
   ],
   "version": "0.2.0-alpha.0"
 }
