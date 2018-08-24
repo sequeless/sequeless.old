@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "lerna": "lerna-wizard"
+    "lerna": "lerna-wizard",
+    "watch": "make watch"
   },
   "repository": {
     "type": "git",

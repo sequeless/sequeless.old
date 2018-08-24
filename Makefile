@@ -9,6 +9,9 @@ STACK_NETWORK?=net
 GIT_BRANCH?=master
 BOOT_NAME?=install
 
+watch:
+	REGISTRY_HOST=$(REGISTRY_HOST) REGISTRY_NAMESPACE=$(REGISTRY_NAMESPACE) $(shell npm bin)/nodemon
+
 .env:
 	echo "REGISTRY_HOST=$(REGISTRY_HOST):$(REGISTRY_PORT)" > .env
 	echo "REGISTRY_NAMESPACE=$(REGISTRY_NAMESPACE)" >> .env
@@ -49,14 +52,10 @@ run: .env docker-compose.tmp.yml
 
 update:
 	git checkout $(GIT_BRANCH)
-	# TBD: make sure this next command resets submodules to latest
-	git pull --recurse-submodules
+	git pull
 
 clean:
 	-docker service rm $(REGISTRY_NAME)
 	-docker stack rm $(STACK_NAME)
 	-rm -rf .env docker-compose.tmp.yml bin
 	docker system prune -a
-
-watch:
-	REGISTRY_HOST=$(REGISTRY_HOST) REGISTRY_NAMESPACE=$(REGISTRY_NAMESPACE) $(shell npm bin)/nodemon

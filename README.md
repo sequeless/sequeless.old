@@ -28,7 +28,7 @@ cd sequeless
 npm install
 npm run bootstrap
 
-make watch
+npm run watch
 open http://127.0.0.1/api/domain/0.0
 ```
 
