@@ -5,6 +5,7 @@ services:
   - docker
 before_install:
   - npm run build
+  - docker swarm init
   - npm run deploy
 script:
   - npm test
