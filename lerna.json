@@ -1,4 +1,11 @@
 {
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "services/*"
+      ]
+    }
+  },
   "packages": [
     "libs/*",
     "services/*"
