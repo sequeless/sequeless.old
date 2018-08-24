@@ -1,11 +1,11 @@
 {
   "name": "@sequeless/boot",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha.0",
   "description": "TBD",
   "main": "index.js",
-	"engines": {
-		"node": ">=7.6.0"
-	},
+  "engines": {
+    "node": ">=7.6.0"
+  },
   "scripts": {
     "test": "npm run test:lint",
     "test:lint": "eslint --cache --ext .js index.js lib"
