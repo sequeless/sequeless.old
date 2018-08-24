@@ -1,6 +1,6 @@
 {
   "name": "@sequeless/sequeless",
-  "version": "0.1.1",
+  "version": "0.2.0-alpha.2",
   "description": "TBD",
   "private": true,
   "scripts": {
@@ -8,6 +8,8 @@
     "build": "docker-compose build --pull --no-cache && docker build -t sequeless/sequeless .",
     "deploy": "docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock sequeless/sequeless deploy",
     "manage": "lerna-wizard",
+    "postinstall": "npm run bootstrap",
+    "precommit": "npm run test",
     "ship": "docker-compose push && docker push sequeless/sequeless",
     "test": "lerna run test",
     "usage": "echo 'USAGE: docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock sequeless/sequeless deploy'",
