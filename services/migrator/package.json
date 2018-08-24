@@ -1,0 +1,26 @@
+{
+  "name": "@sequeless/migrator",
+  "version": "0.0.0",
+  "description": "TBD",
+  "main": "index.js",
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "scripts": {
+    "test": "npm run test:lint",
+    "test:lint": "eslint --cache --ext .js index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rethinkdb": "2.3.3"
+  },
+  "devDependencies": {
+    "eslint": "5.4.0",
+    "eslint-config-eslint": "5.0.1",
+    "eslint-plugin-node": "7.0.1",
+    "faucet": "0.0.1",
+    "husky": "0.14.3",
+    "tape": "4.9.1"
+  }
+}
