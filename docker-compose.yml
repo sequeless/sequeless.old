@@ -1,0 +1,47 @@
+version: "3.3"
+services:
+   rethinkdb:
+      image: rethinkdb:2.3.6
+      ports:
+         - "8080:8080"
+         - "28015:28015"
+   seed:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/seed
+      build:
+         context: ./services/seed
+      restart: "no"
+      depends_on:
+         - rethinkdb
+   controller:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-controller
+      build:
+         dockerfile: Dockerfile
+         context: ./services/controller
+      restart: "always"
+      ports:
+         - "80:80"
+      depends_on:
+         - seed
+      environment:
+         - "LOG_LEVEL=trace"
+   repository:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-repository
+      build:
+         context: ./services/repository
+      restart: "always"
+      environment:
+         - "LOG_LEVEL=trace"
+   view-ui-default:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-ui
+      build:
+         context: ./services/ui
+      restart: "always"
+      environment:
+         - "LOG_LEVEL=trace"
+   view-api-default:
+      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/mvp-api
+      build:
+         context: ./services/api
+      restart: "always"
+      environment:
+         - "LOG_LEVEL=trace"

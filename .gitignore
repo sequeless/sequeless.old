@@ -1,0 +1,8 @@
+*.swp
+*.swo
+.DS_Store
+.eslintcache
+
+npm-debug.log
+lerna-debug.log
+node_modules

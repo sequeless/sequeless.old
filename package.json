@@ -1,0 +1,36 @@
+{
+  "name": "@sequeless/sequeless",
+  "version": "0.1.0",
+  "description": "TBD",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "lerna": "lerna-wizard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sequeless/sequeless.git"
+  },
+  "keywords": [
+    "sequeless"
+  ],
+  "author": "bbartolome",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sequeless/sequeless/issues"
+  },
+  "homepage": "https://github.com/sequeless/sequeless#readme",
+  "devDependencies": {
+    "eslint": "5.4.0",
+    "eslint-config-eslint": "5.0.1",
+    "eslint-plugin-node": "7.0.1",
+    "faucet": "0.0.1",
+    "husky": "0.14.3",
+    "lerna": "3.1.4",
+    "lerna-wizard": "1.0.9",
+    "nodemon": "1.18.3",
+    "tape": "4.9.1"
+  },
+  "nodemonConfig": {
+    "exec": "docker-compose up --build --remove-orphans"
+  }
+}
