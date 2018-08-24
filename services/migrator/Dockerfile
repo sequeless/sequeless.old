@@ -1,7 +1,7 @@
-FROM node:10.8.0
+FROM node:8.11.4
 
-ENV HOST rethinkdb
-ENV PORT 28015
+ENV DB_HOST rethinkdb
+ENV DB_PORT 28015
 
 WORKDIR /workspace
 
@@ -11,4 +11,4 @@ RUN npm install
 
 COPY index.js /workspace/
 
-CMD ./wait-for-it.sh -t 0 -h ${HOST} -p ${PORT} -- node index.js
+CMD ./wait-for-it.sh -t 0 -h ${DB_HOST} -p ${DB_PORT} -- node index.js

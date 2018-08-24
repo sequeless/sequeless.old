@@ -19,7 +19,7 @@ async function connectAndSeed() {
 		const domains = 'domains';
 
 		await r.tableList().contains(domains)
-			.do(tableExists => r.branch(tableExists, { tables_created: 0 }, r.tableCreate(domains)))
+			.do(tableExists => r.branch(tableExists, { tables_created: 0 }, r.tableCreate(domains))) // eslint-disable-line camelcase
 			.run(conn);
 
 		console.log('Seed Domains:', await seedDomain({ conn, table: domains })); // eslint-disable-line no-console
@@ -27,7 +27,7 @@ async function connectAndSeed() {
 		const boundedContexts = 'boundedContexts';
 
 		await r.tableList().contains(boundedContexts)
-			.do(tableExists => r.branch(tableExists, { tables_created: 0 }, r.tableCreate(boundedContexts)))
+			.do(tableExists => r.branch(tableExists, { tables_created: 0 }, r.tableCreate(boundedContexts))) // eslint-disable-line camelcase
 			.run(conn);
 
 		console.log('Seed Bounded Contexts:', await seedBoundedContexts({ conn, table: boundedContexts })); // eslint-disable-line no-console

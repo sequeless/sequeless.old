@@ -9,6 +9,7 @@
     "deploy": "docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock sequeless/sequeless deploy",
     "manage": "lerna-wizard",
     "ship": "docker-compose push && docker push sequeless/sequeless",
+    "test": "lerna run test",
     "usage": "echo 'USAGE: docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock sequeless/sequeless deploy'",
     "watch": "nodemon"
   },

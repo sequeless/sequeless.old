@@ -1,5 +1,10 @@
 language: node_js
 node_js:
-  - "10"
+  - "8"
+services:
+  - docker
+before_install:
+  - npm run build
+  - npm run deploy
 script:
-  - npm test 
+  - npm test
