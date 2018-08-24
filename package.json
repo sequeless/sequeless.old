@@ -5,8 +5,12 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "lerna": "lerna-wizard",
-    "watch": "make watch"
+    "build": "docker-compose build --pull --no-cache && docker build -t sequeless/sequeless .",
+    "deploy": "docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock sequeless/sequeless deploy",
+    "manage": "lerna-wizard",
+    "ship": "docker-compose push && docker push sequeless/sequeless",
+    "usage": "echo 'USAGE: docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock sequeless/sequeless deploy'",
+    "watch": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -33,6 +37,9 @@
     "tape": "4.9.1"
   },
   "nodemonConfig": {
-    "exec": "docker-compose up --build --remove-orphans"
+    "exec": "docker-compose up --build --remove-orphans && docker-compose down",
+    "events": {
+      "exit": "docker-compose down"
+    }
   }
 }

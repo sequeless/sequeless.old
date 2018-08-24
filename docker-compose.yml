@@ -2,11 +2,8 @@ version: "3.3"
 services:
    rethinkdb:
       image: rethinkdb:2.3.6
-      ports:
-         - "8080:8080"
-         - "28015:28015"
    migrator:
-      image: ${REGISTRY_HOST}/${REGISTRY_NAMESPACE}/migrator
+      image: sequeless/migrator:latest
       build:
          context: ./services/migrator
       restart: "no"
