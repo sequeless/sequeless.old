@@ -49,10 +49,6 @@ function seedDomain({ conn, table }) {
 			disableDefaultRoutes: false,
 			routes: [
 				{
-					path: '/home',
-					view: 'http://view-ui-default',
-					passthru: true
-				}, {
 					path: '/api/domain/0.0',
 					view: 'http://view-api-default/api/domain/0.0',
 					params: [
