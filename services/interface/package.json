@@ -1,0 +1,25 @@
+{
+  "name": "@sequeless/interface",
+  "version": "0.2.0-alpha.2",
+  "description": "TBD",
+  "main": "index.js",
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "scripts": {
+    "test": "eslint --cache --ext .js lib"
+  },
+  "dependencies": {
+    "@sequeless/boot": "0.2.0-alpha.3",
+    "express-graphql": "0.6.12",
+    "graphql": "0.13.2",
+    "graphql-tools": "3.0.5"
+  },
+  "devDependencies": {
+    "eslint": "5.4.0",
+    "eslint-config-eslint": "5.0.1",
+    "eslint-plugin-node": "7.0.1",
+    "faucet": "0.0.1",
+    "tape": "4.9.1"
+  }
+}

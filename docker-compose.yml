@@ -21,3 +21,10 @@ services:
          - migrator
       environment:
          - "LOG_LEVEL=trace"
+   interface:
+      image: sequeless/interface
+      build:
+         context: ./services/interface
+      restart: "always"
+      environment:
+         - "LOG_LEVEL=trace"
