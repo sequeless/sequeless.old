@@ -13,6 +13,7 @@
     "precommit": "npm run test",
     "ship": "docker-compose push && docker push sequeless/sequeless",
     "test": "lerna run test",
+    "teardown": "docker-compose down",
     "usage": "echo 'USAGE: docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock sequeless/sequeless deploy'",
     "watch": "nodemon"
   },
@@ -41,9 +42,9 @@
     "tape": "4.9.1"
   },
   "nodemonConfig": {
-    "exec": "docker-compose up --build --remove-orphans && docker-compose down",
+    "exec": "docker-compose up --build --remove-orphans",
     "events": {
-      "exit": "docker-compose down"
+      "exit": "npm run teardown"
     }
   }
 }
