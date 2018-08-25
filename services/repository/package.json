@@ -1,0 +1,24 @@
+{
+  "name": "@sequeless/repository",
+  "version": "0.2.0-alpha.4",
+  "description": "TBD",
+  "private": true,
+  "main": "index.js",
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "scripts": {
+    "test": "npm run test:lint",
+    "test:lint": "eslint --cache --ext .js index.js"
+  },
+  "dependencies": {
+    "@sequeless/boot": "0.2.0-alpha.4"
+  },
+  "devDependencies": {
+    "eslint": "5.4.0",
+    "eslint-config-eslint": "5.0.1",
+    "eslint-plugin-node": "7.0.1",
+    "faucet": "0.0.1",
+    "tape": "4.9.1"
+  }
+}

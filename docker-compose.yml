@@ -28,3 +28,10 @@ services:
       restart: "always"
       environment:
          - "LOG_LEVEL=trace"
+   repository:
+      image: sequeless/repository
+      build:
+         context: ./services/repository
+      restart: "always"
+      environment:
+         - "LOG_LEVEL=trace"
