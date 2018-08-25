@@ -2,6 +2,7 @@
   "name": "@sequeless/controller",
   "version": "0.2.0-alpha.3",
   "description": "TBD",
+  "private": true,
   "main": "index.js",
   "engines": {
     "node": ">=7.6.0"
