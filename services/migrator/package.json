@@ -10,8 +10,6 @@
     "test": "npm run test:lint",
     "test:lint": "eslint --cache --ext .js index.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "rethinkdb": "2.3.3"
   },
