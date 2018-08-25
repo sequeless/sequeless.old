@@ -1,6 +1,6 @@
 {
   "name": "@sequeless/controller",
-  "version": "0.2.0-alpha.3",
+  "version": "0.2.0-alpha.4",
   "description": "TBD",
   "private": true,
   "main": "index.js",
@@ -19,7 +19,7 @@
     "test:integration": "tape test/test.integration.js | faucet"
   },
   "dependencies": {
-    "@sequeless/boot": "0.2.0-alpha.3",
+    "@sequeless/boot": "^0.2.0-alpha.4",
     "lodash": "4.17.10",
     "request": "2.87.0",
     "url-parse": "1.4.3",

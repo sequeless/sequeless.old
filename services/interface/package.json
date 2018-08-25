@@ -1,6 +1,6 @@
 {
   "name": "@sequeless/interface",
-  "version": "0.2.0-alpha.3",
+  "version": "0.2.0-alpha.4",
   "description": "TBD",
   "private": true,
   "main": "index.js",
@@ -11,7 +11,7 @@
     "test": "eslint --cache --ext .js lib"
   },
   "dependencies": {
-    "@sequeless/boot": "0.2.0-alpha.3",
+    "@sequeless/boot": "^0.2.0-alpha.4",
     "express-graphql": "0.6.12",
     "graphql": "0.13.2",
     "graphql-tools": "3.0.5"
