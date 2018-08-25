@@ -38,7 +38,7 @@ async function connectAndSeed() {
 }
 
 function seedDomain({ conn, table }) {
-	const id = '127.0.0.1';
+	const id = 'sequeless';
 
 	return r
 		.table(table)
@@ -50,14 +50,7 @@ function seedDomain({ conn, table }) {
 			routes: [
 				{
 					path: '/api/domain/0.0',
-					view: 'http://view-api-default/api/domain/0.0',
-					params: [
-						{
-							authenticate: {
-								secretOrKeyProvider: 'https://bbartolome.auth0.com/.well-known/jwks.json'
-							}
-						}
-					]
+					view: 'http://interface/api/domain/0.0'
 				}
 			]
 		})
@@ -65,7 +58,7 @@ function seedDomain({ conn, table }) {
 }
 
 function seedBoundedContexts({ conn, table }) {
-	const id = '127.0.0.1/api';
+	const id = 'sequeless/api';
 
 	return r
 		.table(table)
