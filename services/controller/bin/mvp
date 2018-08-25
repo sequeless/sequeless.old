@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+'use strict';
+
+const argv = require('yargs').argv;
+
+// hoist start function and export
+start(argv);
+
+/**
+ * The main function that signals the start of the application
+ * Basically wraps the MVP library
+ *
+ * @param {Object} [args] CLI arguments
+ * @returns {undefined}
+ */
+async function start(args) {
+
+	// Extract the settings
+	const { overridesFile, extensions } = args || {};
+
+	const overrides = overridesFile
+		? require(overridesFile)
+		: {};
+
+	const mvp = require('..');
+
+	const define = mvp({ overrides, extensions });
+
+	define([
+		'-/options/index.js',
+		'-/logger/index.js',
+		'-/store/index.js',
+		'-/server/index.js',
+		'-/ext/controller/index.js'
+	], (options, logger, store, server, controller) => {
+		const defaults = {
+			port: 8000,
+			retryInterval: 1000
+		};
+		const { port, storeUri, retryInterval } = options.init(args, defaults);
+
+		logger.info('initialized', { overrides });
+
+		listen().then(connect, err => {
+			throw new Error(err);
+		});
+
+		async function listen() {
+			try {
+				server.use(controller.middleware());
+
+				const { success } = await server.listen(port) || {};
+
+				logger.info('server is listening', { port, success });
+			} catch (err) {
+				logger.error('server unable to listen', { port, err });
+				process.exitCode = 1;
+			}
+		}
+
+		async function connect() {
+			try {
+				const { success } = await store.connect({ storeUri }) || {};
+
+				logger.info('store has connected', { storeUri, success });
+
+				server.setState('ready'); // TODO: replace with connected, ready if db was created
+			} catch (err) {
+				logger.error('store unable to connect', { storeUri, err });
+				setTimeout(connect, retryInterval);
+			}
+		}
+	});
+}

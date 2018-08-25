@@ -9,3 +9,15 @@ services:
       restart: "no"
       depends_on:
          - rethinkdb
+   controller:
+      image: sequeless/controller
+      hostname: sequeless
+      build:
+         context: ./services/controller
+      restart: "always"
+      ports:
+         - "80:80"
+      depends_on:
+         - migrator
+      environment:
+         - "LOG_LEVEL=trace"
