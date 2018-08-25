@@ -13,10 +13,8 @@
   "scripts": {
     "precommit": "npm run test:lint",
     "prepush": "npm run test:lint && npm run test:unit",
-    "test": "npm run test:lint && npm run test:unit && npm run test:integration",
-    "test:lint": "eslint --cache --ext .js index.js bin/* lib",
-    "test:unit": "tape test/test.unit.js | faucet",
-    "test:integration": "tape test/test.integration.js | faucet"
+    "test": "npm run test:lint",
+    "test:lint": "eslint --cache --ext .js index.js bin/* lib"
   },
   "dependencies": {
     "@sequeless/boot": "^0.2.0-alpha.4",
