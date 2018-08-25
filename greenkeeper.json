@@ -1,0 +1,14 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "libs/boot/package.json",
+        "package.json",
+        "services/controller/package.json",
+        "services/interface/package.json",
+        "services/migrator/package.json",
+        "services/repository/package.json"
+      ]
+    }
+  }
+}
