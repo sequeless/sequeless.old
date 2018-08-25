@@ -8,6 +8,7 @@
     "build": "docker-compose build --pull --no-cache && docker build -t sequeless/sequeless .",
     "canary": "lerna publish --canary",
     "deploy": "docker stack deploy -c docker-compose.yml sequeless",
+    "hoist": "lerna bootstrap --hoist",
     "manage": "lerna-wizard",
     "postinstall": "npm run bootstrap",
     "precommit": "npm run test",
@@ -46,5 +47,8 @@
     "events": {
       "exit": "npm run teardown"
     }
+  },
+  "dependencies": {
+    "lodash": "4.17.10"
   }
 }
