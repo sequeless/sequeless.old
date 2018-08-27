@@ -4,13 +4,11 @@
 define([
 	'lodash',
 	'express',
-	'-/logger/index.js',
 	'-/server/status-handler.js',
 	'-/server/utils.js'
 ], (
 	_,
 	express,
-	logger,
 	statusHandler,
 	utils
 ) => {
