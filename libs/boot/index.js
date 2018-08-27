@@ -23,7 +23,7 @@ module.exports = function boot(options) {
 
 	// Leverage AMD for the plugin architecture
 	// We'll be using the `overrides` to re-map the implementation of internal dependencies
-	rjs.config({ map, baseUrl: process.cwd() });
+	rjs.config({ map });
 
 	return rjs;
 };
