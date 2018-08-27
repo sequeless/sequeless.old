@@ -1,16 +1,8 @@
-FROM node:8.11.4
+FROM sequeless/boot:latest
 
-ENV MVP_STORE_URI=rethinkdb://admin@rethinkdb:28015
+ENV STORE_URI=rethinkdb://admin@rethinkdb:28015
 ENV PORT=80
 
-# install mvp
-WORKDIR /opt/mvp
+COPY ./lib /workspace/lib
 
-COPY ./bin /opt/mvp/bin
-COPY package.json /opt/mvp/package.json
-RUN npm link --production
-
-COPY ./index.js /opt/mvp/index.js
-COPY ./lib /opt/mvp/lib
-
-CMD mvp --log-level=${LOG_LEVEL} --port=${PORT}
+CMD npm start

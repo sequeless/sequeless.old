@@ -3,6 +3,10 @@
   "version": "0.2.0-alpha.4",
   "description": "TBD",
   "main": "index.js",
+  "private": true,
+  "bin": {
+    "boot": "./bin/boot"
+  },
   "engines": {
     "node": ">=7.6.0"
   },
@@ -10,10 +14,19 @@
     "test": "npm run test:lint",
     "test:lint": "eslint --cache --ext .js index.js lib"
   },
+  "engines": {
+    "node": ">=7.6.0"
+  },
   "keywords": [
     "sequeless",
     "boot"
   ],
+  "author": "bbartolome",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sequeless/boot/issues"
+  },
+  "homepage": "https://github.com/sequeless/boot#readme",
   "dependencies": {
     "body-parser": "1.18.3",
     "dataloader": "1.4.0",

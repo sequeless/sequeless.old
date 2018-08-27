@@ -8,8 +8,9 @@
     "node": ">=7.6.0"
   },
   "scripts": {
+    "start": "boot --log-level=${LOG_LEVEL} --port=${PORT} --store-uri=${STORE_URI} --extensions=$(pwd)/lib/ext --main='-/ext/main.js'",
     "test": "npm run test:lint",
-    "test:lint": "eslint --cache --ext .js index.js"
+    "test:lint": "eslint --cache --ext .js lib"
   },
   "dependencies": {
     "@sequeless/boot": "0.2.0-alpha.4"

@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "docker-compose build --pull --no-cache && docker build -t sequeless/sequeless .",
+    "build": "docker build -t sequeless/boot libs/boot && docker-compose build && docker build -t sequeless/sequeless .",
     "canary": "lerna publish --canary",
+    "clean": "lerna clean",
     "deploy": "docker stack deploy -c docker-compose.yml sequeless",
     "hoist": "lerna bootstrap --hoist",
     "manage": "lerna-wizard",
@@ -43,7 +44,7 @@
     "tape": "4.9.1"
   },
   "nodemonConfig": {
-    "exec": "docker-compose up --build --remove-orphans",
+    "exec": "bash -c 'npm run build && docker-compose up --remove-orphans'",
     "events": {
       "exit": "npm run teardown"
     }

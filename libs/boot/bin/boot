@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+'use strict';
+
+const argv = require('yargs').argv;
+
+// hoist start function and export
+start(argv);
+
+/**
+ * The main function that signals the start of the application
+ * Basically wraps the MVP library
+ *
+ * @param {Object} [args] CLI arguments
+ * @returns {undefined}
+ */
+async function start(args) {
+
+	// Extract the settings
+	const { overridesFile, extensions, main } = args || {};
+
+	const overrides = overridesFile
+		? require(overridesFile)
+		: {};
+
+	const boot = require('..');
+
+	const define = boot({ overrides, extensions });
+
+	if (main) {
+		define([
+			'-/logger/index.js',
+			main
+		], (logger, instance) => {
+			logger.info('process started', { start: new Date(), overridesFile, extensions, main });
+			instance()
+				.catch(err => {
+					throw new Error(err);
+				});
+		});
+	} else {
+		console.error('ERROR: no `--main` argument was provided'); // eslint-disable-line no-console
+		process.exitCode = 1;
+	}
+}
