@@ -14,6 +14,7 @@ define([
 				case 'ready':
 					return next();
 				default:
+					logger.warn('server state is not yet ready');
 					return res.status(503).end();
 				}
 			};
