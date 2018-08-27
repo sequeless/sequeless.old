@@ -8,10 +8,10 @@ define([
 
 	let settings = argv;
 
-	function init(options, defaults) {
+	function init(defaults) {
 
 		// Provide defaults
-		settings = _.defaultsDeep(options, defaults);
+		settings = _.defaultsDeep(argv, defaults);
 
 		return get();
 	}
