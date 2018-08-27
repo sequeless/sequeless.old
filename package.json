@@ -44,10 +44,7 @@
     "tape": "4.9.1"
   },
   "nodemonConfig": {
-    "exec": "bash -c 'npm run build && docker-compose up --remove-orphans'",
-    "events": {
-      "exit": "npm run teardown"
-    }
+    "exec": "bash -c 'npm run build && docker-compose up --remove-orphans'"
   },
   "dependencies": {
     "lodash": "4.17.10"
