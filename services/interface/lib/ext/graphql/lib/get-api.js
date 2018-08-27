@@ -68,7 +68,7 @@ define([
 	const API = graphqlHTTP({
 		schema,
 		rootValue: {},
-		graphiql: true
+		graphiql: false
 	});
 
 	return API;
