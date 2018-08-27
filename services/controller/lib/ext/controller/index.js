@@ -53,12 +53,12 @@ define([
 
 			if (view) {
 				router.use(path, (req, res) => {
-					const { url } = req || {};
+					const { originalUrl } = req || {};
 					const requestUrl = passthru
-						? `${view}${url}`
+						? `${view}${originalUrl}`
 						: view;
 
-					logger.debug('reroute', { url, requestUrl });
+					logger.debug('reroute', { path, originalUrl, requestUrl });
 
 					req.pipe(request(requestUrl, {
 						headers: {
