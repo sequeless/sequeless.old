@@ -5,7 +5,6 @@ ENV PORT=80
 
 VOLUME /var/run
 
-COPY index.js /workspace/index.js
 COPY lib /workspace/lib
 
 CMD npm start
