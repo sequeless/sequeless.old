@@ -5,6 +5,7 @@ services:
    migrator:
       image: sequeless/migrator:latest
       build:
+         dockerfile: build.docker
          context: ./services/migrator
       restart: "no"
       depends_on:
@@ -13,6 +14,7 @@ services:
       image: sequeless/controller
       hostname: sequeless
       build:
+         dockerfile: build.docker
          context: ./services/controller
       restart: "always"
       ports:
@@ -24,6 +26,7 @@ services:
    interface:
       image: sequeless/interface
       build:
+         dockerfile: build.docker
          context: ./services/interface
       restart: "always"
       environment:
@@ -31,6 +34,7 @@ services:
    repository:
       image: sequeless/repository
       build:
+         dockerfile: build.docker
          context: ./services/repository
       restart: "always"
       environment:

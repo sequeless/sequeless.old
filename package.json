@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "docker build -t sequeless/boot libs/bootstrap && docker-compose build && docker build -t sequeless/sequeless .",
+    "build": "docker build -t sequeless/boot --file=libs/bootstrap/build.docker libs/bootstrap && docker-compose build && docker build -t sequeless/sequeless --file=build.docker .",
     "canary": "lerna publish --canary",
     "clean": "lerna clean",
     "deploy": "docker stack deploy -c docker-compose.yml sequeless",
@@ -17,7 +17,7 @@
     "test": "lerna run test",
     "teardown": "docker-compose down",
     "usage": "echo 'USAGE: docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock sequeless/sequeless deploy'",
-    "watch": "nodemon"
+    "watch": "nodemon --ext js,json,jsx,css,docker,yml"
   },
   "repository": {
     "type": "git",
