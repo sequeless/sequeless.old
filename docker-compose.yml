@@ -39,3 +39,11 @@ services:
       restart: "always"
       environment:
          - "LOG_LEVEL=trace"
+   view:
+      image: sequeless/view
+      build:
+         dockerfile: build.docker
+         context: ./services/view
+      restart: "always"
+      environment:
+         - "LOG_LEVEL=trace"

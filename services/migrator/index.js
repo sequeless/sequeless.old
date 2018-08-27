@@ -38,7 +38,7 @@ async function connectAndSeed() {
 }
 
 function seedDomain({ conn, table }) {
-	const id = 'sequeless';
+	const id = '127.0.0.1';
 
 	return r
 		.table(table)
@@ -49,6 +49,10 @@ function seedDomain({ conn, table }) {
 			disableDefaultRoutes: false,
 			routes: [
 				{
+					path: '^/$',
+					view: 'http://view/'
+				},
+				{
 					path: '/api/domain/0.0',
 					view: 'http://interface/api/domain/0.0'
 				}
@@ -58,7 +62,7 @@ function seedDomain({ conn, table }) {
 }
 
 function seedBoundedContexts({ conn, table }) {
-	const id = 'sequeless/api';
+	const id = '127.0.0.1/api';
 
 	return r
 		.table(table)
