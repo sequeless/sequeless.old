@@ -9,7 +9,7 @@ define([
 	'rethinkdb',
 	'-/logger/index.js'
 ], (_, lru, { Map }, parse, r, logger) => {
-	let cursors = Map({});
+	let feeds = Map({});
 
 	const max = !_.isNaN(parseInt(process.env.MVP_STORE_LRU_MAXSIZE, 10))
 		? parseInt(process.env.MVP_STORE_LRU_MAXSIZE, 10)
@@ -21,7 +21,7 @@ define([
 		max,
 		maxAge,
 		dispose(key) {
-			(cursors.get(key) || { close: _.noop }).close();
+			(feeds.get(key) || { close: _.noop }).close();
 		},
 		noDisposeOnSet: true
 	});
@@ -31,7 +31,7 @@ define([
 	const plugin = {
 		async connect(options) {
 			const settings = _.defaultsDeep(options, {
-				storeUri: process.env.MVP_STORE_URI || 'rethinkdb://admin@127.0.0.1:28015'
+				storeUri: 'rethinkdb://admin@127.0.0.1:28015'
 			});
 
 			const defaults = {
@@ -88,16 +88,16 @@ define([
 					r.table(type)
 						.get(id)
 						.changes({ includeInitial: true, squash: true })
-						.run(conn, (err, cursor) => {
+						.run(conn, (err, feed) => {
 							if (err) {
 								return reject(err);
 							}
 
-							cursors = cursors.set(key, cursor);
+							feeds = feeds.set(key, feed);
 
 							let unresolved = true;
 
-							return cursor.each((eachErr, row) => {
+							return feed.each((eachErr, row) => {
 								const { new_val: v } = row || {}; // eslint-disable-line camelcase
 
 								cache.set(key, v);
