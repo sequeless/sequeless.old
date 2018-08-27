@@ -5,17 +5,13 @@ const _ = require('lodash');
 const path = require('path');
 const rjs = require('requirejs');
 
-module.exports = function mvp(argv) {
+module.exports = function boot(options) {
 
-	const settings = _.defaultsDeep(argv, {});
+	const settings = _.defaults(options, {});
 
 	const { overrides, extensions } = settings;
 
-	const mapOverrides = overrides
-		? overrides
-		: {};
-
-	const map = _.defaultsDeep({}, mapOverrides, {
+	const map = _.defaultsDeep({}, overrides ? overrides : {}, {
 		'*': {
 			'-': path.join(__dirname, 'lib')
 		}
