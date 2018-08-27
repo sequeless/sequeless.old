@@ -5,7 +5,7 @@ const _ = require('lodash');
 const path = require('path');
 const rjs = require('requirejs');
 
-module.exports = function boot(options) {
+module.exports = function bootstrap(options) {
 
 	const settings = _.defaults(options, {});
 

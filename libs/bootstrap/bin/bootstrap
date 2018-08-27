@@ -22,9 +22,9 @@ async function start(args) {
 		? require(overridesFile)
 		: {};
 
-	const boot = require('..');
+	const bootstrap = require('..');
 
-	const define = boot({ overrides, extensions });
+	const define = bootstrap({ overrides, extensions });
 
 	if (main) {
 		define([

@@ -1,6 +1,6 @@
 {
   "name": "@sequeless/repository",
-  "version": "0.2.0-alpha.4",
+  "version": "0.1.0-alpha.0",
   "description": "TBD",
   "private": true,
   "main": "index.js",
@@ -8,12 +8,12 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "start": "boot --log-level=${LOG_LEVEL} --port=${PORT} --store-uri=${STORE_URI} --extensions=$(pwd)/lib/ext --main='-/ext/main.js'",
+    "start": "bootstrap --log-level=${LOG_LEVEL} --port=${PORT} --store-uri=${STORE_URI} --extensions=$(pwd)/lib/ext --main='-/ext/main.js'",
     "test": "npm run test:lint",
     "test:lint": "eslint --cache --ext .js lib"
   },
   "dependencies": {
-    "@sequeless/boot": "0.2.0-alpha.4"
+    "@sequeless/bootstrap": "0.1.0-alpha.0"
   },
   "devDependencies": {
     "eslint": "5.4.0",

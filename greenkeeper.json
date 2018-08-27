@@ -2,7 +2,7 @@
   "groups": {
     "default": {
       "packages": [
-        "libs/boot/package.json",
+        "libs/bootstrap/package.json",
         "package.json",
         "services/controller/package.json",
         "services/interface/package.json",
