@@ -1,4 +1,4 @@
-    <div id="graphiql">Loading...</div>
+    <div id="graphiql"></div>
     <script>
 
       /**
@@ -70,7 +70,10 @@
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+            'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+            params: {
+              scope: 'openid profile'
+            }
           },
           body: JSON.stringify(graphQLParams),
           credentials: 'include',
