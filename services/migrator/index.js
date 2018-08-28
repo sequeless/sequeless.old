@@ -79,7 +79,7 @@ function seedBoundedContexts({ conn, table }) {
 		.replace({
 			id,
 			version: 1,
-			authentication: {
+			authentication: { // TODO: add scope
 				jwksUri: `https://${auth0Domain}/.well-known/jwks.json`
 			},
 			aggregates: {
@@ -142,44 +142,37 @@ function seedBoundedContexts({ conn, table }) {
 							entities: {
 								Meta: {
 									methods: {
-										created: {
+										current: {
 											resolver: {
 												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0',
 												config: {
-													path: 'created'
+													path: 'current'
+												}
+											},
+											returnType: {
+												name: 'String'
+											}
+										}
+									}
+								},
+								User: {
+									methods: {
+										nickname: {
+											resolver: {
+												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0',
+												config: {
+													path: 'nickname'
 												}
 											},
 											returnType: {
 												name: 'String'
 											}
 										},
-										createdBy: {
+										email: {
 											resolver: {
 												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0',
 												config: {
-													path: 'createdBy'
-												}
-											},
-											returnType: {
-												name: 'String'
-											}
-										},
-										lastModified: {
-											resolver: {
-												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0',
-												config: {
-													path: 'lastModified'
-												}
-											},
-											returnType: {
-												name: 'String'
-											}
-										},
-										lastModifiedBy: {
-											resolver: {
-												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0',
-												config: {
-													path: 'lastModifiedBy'
+													path: 'email'
 												}
 											},
 											returnType: {
@@ -207,39 +200,6 @@ function seedBoundedContexts({ conn, table }) {
 										name: {
 											returnType: {
 												name: 'String'
-											}
-										}
-									}
-								},
-								Aggregate: {
-									methods: {
-										name: {
-											returnType: {
-												name: 'String'
-											}
-										},
-										entities: {
-											returnType: {
-												name: 'Entity',
-												isCollection: true
-											}
-										},
-										methods: {
-											returnType: {
-												name: 'Method',
-												isCollection: true
-											}
-										},
-										queries: {
-											returnType: {
-												name: 'Query',
-												isCollection: true
-											}
-										},
-										actions: {
-											returnType: {
-												name: 'Action',
-												isCollection: true
 											}
 										}
 									}
@@ -311,19 +271,6 @@ function seedBoundedContexts({ conn, table }) {
 										in: 'InputDomainID'
 									}
 								}
-
-								/*
-								 * editDomain
-								 * addRepository
-								 * addBoundedContext
-								 * addAggregate
-								 * addMethod
-								 * addAction
-								 * addQuery
-								 * addEntity
-								 * addInputEntity
-								 */
-
 							},
 							methods: {
 								meta: {
@@ -335,6 +282,46 @@ function seedBoundedContexts({ conn, table }) {
 									},
 									returnType: {
 										name: 'Meta'
+									}
+								},
+								user: {
+									resolver: {
+										uri: 'http://unix:/var/run/resolvers.sock:/get/0.0',
+										config: {
+											path: 'user'
+										}
+									},
+									returnType: {
+										name: 'User'
+									}
+								},
+								name: {
+									returnType: {
+										name: 'String'
+									}
+								},
+								entities: {
+									returnType: {
+										name: 'Entity',
+										isCollection: true
+									}
+								},
+								methods: {
+									returnType: {
+										name: 'Method',
+										isCollection: true
+									}
+								},
+								queries: {
+									returnType: {
+										name: 'Query',
+										isCollection: true
+									}
+								},
+								actions: {
+									returnType: {
+										name: 'Action',
+										isCollection: true
 									}
 								}
 							},
