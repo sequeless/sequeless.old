@@ -2,11 +2,17 @@
 'use strict';
 
 define([
+	'express',
+	'passport',
+	'passport-anonymous',
 	'-/ext/graphql/lib/get-config.js',
 	'-/ext/graphql/lib/get-aggregate.js',
 	'-/ext/graphql/lib/get-repository.js',
 	'-/ext/graphql/lib/get-api.js'
 ], (
+	{ Router },
+	passport,
+	AnonymousStrategy,
 	getConfig,
 	getAggregate,
 	getRepository,
@@ -16,8 +22,11 @@ define([
 	const aggregate = getAggregate(config, args);
 	const repository = getRepository(config, aggregate);
 
-	return getAPI({
-		aggregate,
-		repository
-	});
+	const router = new Router();
+
+	passport.use(new AnonymousStrategy());
+	router.use(passport.initialize());
+	router.use(getAPI({ aggregate, repository }));
+
+	return router;
 });
