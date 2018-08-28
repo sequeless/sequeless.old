@@ -71,6 +71,7 @@ function seedDomain({ conn, table }) {
 
 function seedBoundedContexts({ conn, table }) {
 	const id = '127.0.0.1/api';
+	const auth0Domain = process.env.AUTH0_DOMAIN;
 
 	return r
 		.table(table)
@@ -78,6 +79,9 @@ function seedBoundedContexts({ conn, table }) {
 		.replace({
 			id,
 			version: 1,
+			authentication: {
+				jwksUri: `https://${auth0Domain}/.well-known/jwks.json`
+			},
 			aggregates: {
 				domain: {
 					tags: {
