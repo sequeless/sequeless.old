@@ -88,16 +88,79 @@
       // See the README in the top level of this module to learn more about
       // how you can customize GraphiQL by providing different values or
       // additional child elements.
-      ReactDOM.render(
-        React.createElement(GraphiQL, {
-          fetcher: graphQLFetcher,
-          query: parameters.query,
-          variables: parameters.variables,
-          operationName: parameters.operationName,
-          onEditQuery: onEditQuery,
-          onEditVariables: onEditVariables,
-          onEditOperationName: onEditOperationName
-        }),
-        document.getElementById('graphiql')
-      );
+      function showGraphiQL() {
+        ReactDOM.render(
+          React.createElement(GraphiQL, {
+            fetcher: graphQLFetcher,
+            query: parameters.query,
+            variables: parameters.variables,
+            operationName: parameters.operationName,
+            onEditQuery: onEditQuery,
+            onEditVariables: onEditVariables,
+            onEditOperationName: onEditOperationName
+          }),
+          document.getElementById('graphiql')
+        );
+      }
+
+      function setSession(authResult) {
+        // Set the time that the access token will expire at
+        var expiresAt = JSON.stringify(
+          authResult.expiresIn * 1000 + new Date().getTime()
+        );
+        localStorage.setItem('access_token', authResult.accessToken);
+        localStorage.setItem('id_token', authResult.idToken);
+        localStorage.setItem('expires_at', expiresAt);
+      }
+
+      function logout() {
+        // Remove tokens and expiry time from localStorage
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('id_token');
+        localStorage.removeItem('expires_at');
+      }
+
+      function isAuthenticated() {
+        // Check whether the current time is past the
+        // access token's expiry time
+        var expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+        return new Date().getTime() < expiresAt;
+      }
+
+      window.addEventListener('load', function() {
+        var lock = new Auth0Lock('{{query.auth0ClientId}}', '{{query.auth0Domain}}', {
+          autoclose: true,
+          auth: {
+            redirectUrl: window.location.href,
+            responseType: 'token id_token',
+            audience: 'https://{{query.auth0Domain}}/userinfo',
+            params: {
+              scope: 'openid'
+            }
+          }
+        });
+
+        function showLogin() {
+          lock.show();
+        }
+
+        lock.on('authorization_error', function(err) {
+          console.log(err);
+          lock.show();
+        });
+			
+        if(!isAuthenticated()) {
+          lock.show();
+
+          lock.on('authenticated', function(authResult) {
+            if (authResult && authResult.accessToken && authResult.idToken) {
+              setSession(authResult);
+              lock.hide()
+  					  showGraphiQL();
+            }
+          });
+        } else {
+          showGraphiQL();
+        }
+      });
     </script>

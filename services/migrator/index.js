@@ -39,6 +39,8 @@ async function connectAndSeed() {
 
 function seedDomain({ conn, table }) {
 	const id = '127.0.0.1';
+	const auth0ClientId = process.env.AUTH0_CLIENT_ID;
+	const auth0Domain = process.env.AUTH0_DOMAIN;
 
 	return r
 		.table(table)
@@ -50,7 +52,7 @@ function seedDomain({ conn, table }) {
 			routes: [
 				{
 					path: '^/$',
-					view: 'http://view/graphiql/auth0/0.0?api=/api/domain/0.0'
+					view: `http://view/graphiql/auth0/0.0?api=/api/domain/0.0&auth0ClientId=${auth0ClientId}&auth0Domain=${auth0Domain}`
 				},
 				{
 					path: '/assets',

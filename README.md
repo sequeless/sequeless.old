@@ -35,6 +35,9 @@ git clone git@github.com:sequeless/sequeless.git
 cd sequeless
 npm install
 npm run bootstrap
+
+export AUTH0_CLIENT_ID=${AUTH0_CLIENT_ID}
+export AUTH0_DOMAIN=${AUTH0_DOMAIN}
 npm run watch
 
 open http://127.0.0.1/api/domain/0.0
