@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "docker build -t sequeless/boot --file=libs/bootstrap/build.docker libs/bootstrap && docker-compose build && docker build -t sequeless/sequeless --file=build.docker .",
+    "build": "docker build -t sequeless/bootstrap --file=libs/bootstrap/build.docker libs/bootstrap && docker-compose build && docker build -t sequeless/sequeless --file=build.docker .",
     "canary": "lerna publish --canary",
     "clean": "lerna clean",
     "deploy": "docker stack deploy -c docker-compose.yml sequeless",
