@@ -6,6 +6,7 @@ define([
 	'express',
 	'passport-jwt',
 	'request',
+	'dataloader',
 	'-/logger/index.js',
 	'-/ext/graphql/lib/get-config.js',
 	'-/ext/graphql/lib/get-aggregate.js',
@@ -16,6 +17,7 @@ define([
 	{ Router },
 	{ ExtractJwt },
 	request,
+	DataLoader,
 	logger,
 	getConfig,
 	getAggregate,
@@ -30,23 +32,34 @@ define([
 
 	const auth0Domain = _.get(config, 'authentication.auth0.domain');
 
-	// TODO: move into an extension
+	// TODO: refactor and move into an extension
 	if (auth0Domain) {
-		router.use((req, res, next) => {
-			const bearer = ExtractJwt.fromAuthHeaderAsBearerToken()(req);
-
+		const userLoader = new DataLoader(keys => Promise.all(_.map(keys, bearer => new Promise((resolve, reject) => {
 			request({
 				url: `https://${auth0Domain}/userinfo`,
 				auth: { bearer }
 			}, (err, resp, body) => {
 				if (!err && resp.statusCode === 200) {
-					req.user = JSON.parse(body);
-					logger.debug('user', { user: req.user });
+					const user = JSON.parse(body);
+
+					return resolve(user);
 				}
 
+				return reject(err);
+			});
+		}))));
+
+		router.use((req, res, next) => {
+			const bearer = ExtractJwt.fromAuthHeaderAsBearerToken()(req);
+
+			userLoader.load(bearer).then(user => {
+				logger.debug('user', { user });
+				req.user = user;
+
+				next();
+			}, () => {
 				next();
 			});
-
 		});
 	}
 	router.use(getAPI({ aggregate, repository }));
