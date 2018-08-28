@@ -40,10 +40,11 @@ define([
 			secretOrKeyProvider,
 			algorithms: ['RS256'],
 			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-			verifyCallback: (payload, done) => done(null, payload)
+			verifyCallback: (payload, done) => done(null, payload) // TODO: make sure token is not expired
 		};
 		const settings = _.defaultsDeep(options, defaults);
 
+		// TODO: cache JWT verification
 		return new JwtStrategy(settings, settings.verifyCallback);
 	}
 
@@ -54,7 +55,7 @@ define([
 		const client = jwksRsa({
 			cache: true,
 			rateLimit: true,
-			jwksRequestsPerMinute: 5,
+			jwksRequestsPerMinute: 1, // TODO: allow configuration
 			jwksUri
 		});
 
