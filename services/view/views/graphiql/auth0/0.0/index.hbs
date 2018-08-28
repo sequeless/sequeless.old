@@ -148,15 +148,16 @@
           console.log(err);
           lock.show();
         });
-			
+
         if(!isAuthenticated()) {
           lock.show();
 
           lock.on('authenticated', function(authResult) {
+            console.log('authResult:', authResult);
             if (authResult && authResult.accessToken && authResult.idToken) {
               setSession(authResult);
               lock.hide()
-  					  showGraphiQL();
+              showGraphiQL();
             }
           });
         } else {
