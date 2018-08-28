@@ -11,3 +11,5 @@ node_modules
 
 docker-compose.tmp.yml
 docker-compose.stack.yml
+
+services/view/assets

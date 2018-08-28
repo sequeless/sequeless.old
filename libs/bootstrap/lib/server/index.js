@@ -17,6 +17,7 @@ define([
 	app.use(statusHandler.middleware());
 
 	const plugin = {
+		app,
 		use(...args) {
 			return app.use(...args);
 		},

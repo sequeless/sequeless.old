@@ -17,7 +17,7 @@
     "test": "lerna run test",
     "teardown": "docker-compose down",
     "usage": "echo 'USAGE: docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock sequeless/sequeless deploy'",
-    "watch": "nodemon --ext js,json,jsx,html,css,docker,yml"
+    "watch": "nodemon --ext js,json,jsx,html,css,docker,hbs,yml"
   },
   "repository": {
     "type": "git",

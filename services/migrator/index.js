@@ -50,11 +50,17 @@ function seedDomain({ conn, table }) {
 			routes: [
 				{
 					path: '^/$',
-					view: 'http://view/'
+					view: 'http://view/graphiql/auth0/0.0?api=/api/domain/0.0'
+				},
+				{
+					path: '/assets',
+					passthru: true,
+					view: 'http://view/assets'
 				},
 				{
 					path: '/api/domain/0.0',
-					view: 'http://interface/api/domain/0.0'
+					passthru: true,
+					view: 'http://interface'
 				}
 			]
 		})

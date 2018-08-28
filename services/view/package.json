@@ -13,7 +13,8 @@
     "test:lint": "eslint --cache --ext .js lib"
   },
   "dependencies": {
-    "@sequeless/bootstrap": "0.1.0-alpha.0"
+    "@sequeless/bootstrap": "0.1.0-alpha.0",
+    "express-handlebars": "3.0.0"
   },
   "devDependencies": {
     "eslint": "5.4.0",
