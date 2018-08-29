@@ -180,6 +180,18 @@ function seedBoundedContexts({ conn, table }) {
 											returnType: {
 												name: 'String'
 											}
+										},
+										roles: {
+											resolver: {
+												uri: 'http://unix:/var/run/resolvers.sock:/get/0.0',
+												config: {
+													path: '["https://127.0.0.1/app/metadata"].roles'
+												}
+											},
+											returnType: {
+												name: 'String',
+												isCollection: true
+											}
 										}
 									}
 								},
