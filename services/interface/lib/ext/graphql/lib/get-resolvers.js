@@ -79,7 +79,7 @@ define([
 			const { trxId } = rawCtxt || {};
 			const prevPath = getPathAsString(_.get(info, 'path.prev'));
 
-			const ctxt = getFilteredImmutableCtxt(rawCtxt);
+			const ctxt = getFilteredCtxt(rawCtxt);
 
 			return batchResolver.load({ uri, prevPath, obj, ctxt, trxId, args, config });
 		};
@@ -105,7 +105,7 @@ define([
 		return (obj, args, rawCtxt) => {
 			const id = rawCtxt.trxId;
 
-			const ctxt = getFilteredImmutableCtxt(rawCtxt);
+			const ctxt = getFilteredCtxt(rawCtxt);
 
 			return Promise.resolve(Map({
 				id,
@@ -116,8 +116,8 @@ define([
 		};
 	}
 
-	function getFilteredImmutableCtxt(ctxt) {
-		return toImmutable(_.pick(ctxt, [
+	function getFilteredCtxt(ctxt) {
+		return _.pick(ctxt, [
 			'baseUrl',
 			'cookies',
 			'hostname',
@@ -130,7 +130,7 @@ define([
 			'query',
 			'route',
 			'user'
-		]));
+		]);
 	}
 
 	async function commit(obj, args, rawCtxt) {

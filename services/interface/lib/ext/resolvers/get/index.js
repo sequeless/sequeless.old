@@ -23,7 +23,11 @@ define([
 
 				const obj = _.get(objects, `${trxId}/${prevPath}`);
 
-				return _.get(obj, path) || null;
+				const value = _.get(obj, path) || null;
+
+				logger.debug('value', { trxId, obj, path, value });
+
+				return value;
 			});
 
 			res.writeHead(200, {
