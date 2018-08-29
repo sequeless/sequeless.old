@@ -52,7 +52,7 @@ function seedDomain({ conn, table }) {
 			routes: [
 				{
 					path: '^/$',
-					view: `http://view/graphiql/auth0/0.0?api=/api/domain/0.0&auth0ClientId=${auth0ClientId}&auth0Domain=${auth0Domain}`
+					view: `http://view/graphiql/auth0/0.1?api=/api/domain/0.0&logo=Sequeless&auth0ClientId=${auth0ClientId}&auth0Domain=${auth0Domain}`
 				},
 				{
 					path: '/assets',
