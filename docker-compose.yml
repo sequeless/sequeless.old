@@ -3,7 +3,7 @@ services:
    rethinkdb:
       image: rethinkdb:2.3.6
    migrator:
-      image: sequeless/migrator:latest
+      image: sequeless/migrator
       build:
          dockerfile: build.docker
          context: ./services/migrator
