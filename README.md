@@ -58,3 +58,9 @@ open http://127.0.0.1/api/domain/0.0
 - `npm run ship`: pushes all the Docker images into Docker Hub
 - `npm run deploy`: deploys the Docker services on the local Docker swarm
 - `npm run usage`: prints out the usage if the Docker container was ran without a command
+
+## Architecture
+
+### Services Diagram
+
+![Services Diagram](./docs/img/services-diagram.png)
