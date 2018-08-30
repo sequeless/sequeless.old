@@ -1,6 +1,6 @@
 # Sequeless (@sequeless/sequeless)
 
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Greenkeeper badge](https://badges.greenkeeper.io/sequeless/sequeless.svg)](https://greenkeeper.io/)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/) [![Greenkeeper badge](https://badges.greenkeeper.io/sequeless/sequeless.svg)](https://greenkeeper.io/) [![Build Status](https://travis-ci.org/sequeless/sequeless.svg?branch=master)](https://travis-ci.org/sequeless/sequeless)
 
 **EXPERIMENTAL**: Not yet ready to be released
 
