@@ -24,6 +24,6 @@
     "eslint-config-eslint": "5.0.1",
     "eslint-plugin-node": "7.0.1",
     "faucet": "0.0.1",
-    "tape": "4.9.1"
+    "tape": "4.10.1"
   }
 }
