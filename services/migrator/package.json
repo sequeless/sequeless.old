@@ -15,7 +15,7 @@
     "rethinkdb": "2.3.3"
   },
   "devDependencies": {
-    "eslint": "5.4.0",
+    "eslint": "6.2.0",
     "eslint-config-eslint": "5.0.1",
     "eslint-plugin-node": "7.0.1",
     "faucet": "0.0.1",
